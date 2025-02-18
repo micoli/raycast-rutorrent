@@ -16,6 +16,12 @@
       "title": "rutorrent",
       "description": "Remote access to RuTorrent",
       "mode": "view"
+    },
+    {
+      "name": "magnet",
+      "title": "magnet",
+      "description": "open a magnet link",
+      "mode": "view"
     }
   ],
   "preferences": [
@@ -63,6 +69,7 @@
   "dependencies": {
     "@raycast/api": "^1.84.12",
     "@raycast/utils": "^1.18.0",
+    "node-fetch": "^3.3.2",
     "rutorrent-promise": "^2.0.0"
   },
   "devDependencies": {
