@@ -12,6 +12,13 @@
   "license": "MIT",
   "commands": [
     {
+      "name": "rutorrent-uploader",
+      "title": "Torrent Uploader",
+      "description": "rutorrent uploader",
+      "interval": "15s",
+      "mode": "no-view"
+    },
+    {
       "name": "rutorrent",
       "title": "rutorrent",
       "description": "Remote access to RuTorrent",
@@ -69,11 +76,13 @@
   "dependencies": {
     "@raycast/api": "^1.84.12",
     "@raycast/utils": "^1.18.0",
+    "form-data": "^4.0.4",
     "node-fetch": "^3.3.2",
     "rutorrent-promise": "^2.0.0"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^1.0.11",
+    "@types/form-data": "^2.2.1",
     "@types/node": "20.8.10",
     "@types/react": "18.3.3",
     "eslint": "^8.57.0",

@@ -3,31 +3,12 @@ import {
   showToast,
   Toast,
   openCommandPreferences,
-  getPreferenceValues,
   Color,
   ActionPanel,
   Action,
 } from "@raycast/api";
 import { useEffect, useState } from "react";
-import RuTorrent from "rutorrent-promise";
-
-interface Preferences {
-  host: string;
-  port: string;
-  path: string;
-  username: string;
-  password: string;
-}
-
-const preferences: Preferences = getPreferenceValues<Preferences>();
-const rutorrent = new RuTorrent({
-  host: preferences.host,
-  port: preferences.port,
-  path: preferences.path,
-  ssl: true,
-  username: preferences.username,
-  password: preferences.password,
-});
+import { ruTorrent } from "./global";
 
 interface Torrent {
   hash: string;
@@ -46,7 +27,7 @@ interface Torrent {
 export async function listTorrents(): Promise<Torrent[]> {
   try {
     return (
-      await rutorrent.get([
+      await ruTorrent.get([
         "d.get_name",
         "d.get_custom1",
         "d.get_size_bytes",
@@ -83,7 +64,7 @@ export async function listTorrents(): Promise<Torrent[]> {
   }
 }
 
-const formatBytes = (bytes, decimals) => {
+const formatBytes = (bytes:number, decimals:number) => {
   if (bytes == 0) return "0 Bytes";
   const k = 1024,
     dm = decimals || 2,
@@ -167,7 +148,7 @@ export default function Command() {
                 <Action
                   title="Delete"
                   onAction={() => {
-                    rutorrent.delete(host.hash).then(refreshList);
+                    ruTorrent.delete(host.hash).then(refreshList);
                   }}
                 />
                 <Action title="Open Extension Preferences" onAction={openCommandPreferences} />
